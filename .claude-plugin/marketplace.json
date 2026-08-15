@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "dev-process",
+  "description": "Pete's development process, packaged for reuse: spec-driven delivery from idea to shipped tasks, plus the gates and rituals that thirty phases of building taught us to add.",
+  "owner": {
+    "name": "pdtl"
+  },
+  "plugins": [
+    {
+      "name": "spec-driven-delivery",
+      "description": "Idea to shipped software as a sequence of reviewable artifacts: refine the spec, architect it, break it into tasks, then build under a working agreement with real gates. Includes the phase-boundary ritual, the issue-review loop, and a catalogue of the ways a green test suite lies to you.",
+      "author": {
+        "name": "pdtl"
+      },
+      "category": "workflow",
+      "source": "./plugins/spec-driven-delivery"
+    }
+  ]
+}
