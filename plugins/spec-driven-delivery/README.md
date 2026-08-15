@@ -16,6 +16,12 @@ account. Every rule here was paid for.
 /plugin install spec-driven-delivery
 ```
 
+Restart Claude Code afterwards, then `/project-bootstrap` on a new project.
+
+Scopes, verifying the install, removing stale loose copies of the three spec skills,
+updating, and working on the plugin itself: **[Installation](../../README.md#installation)**
+in the repo README.
+
 ## Skills
 
 | Skill | When |
