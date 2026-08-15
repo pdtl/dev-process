@@ -164,7 +164,7 @@ claude plugin validate plugins/spec-driven-delivery/skills
 
 ## Where it came from
 
-Distilled from [Parallel Timelines](https://github.com/pdtl/timelines) — thirty phases, six
+Distilled from work on a personal project — thirty phases, six
 hands-on review rounds, and fifteen lessons about the process itself. The rules live here;
 the case studies that produced them stay in that repo, where they can be checked against the
 code they describe.
