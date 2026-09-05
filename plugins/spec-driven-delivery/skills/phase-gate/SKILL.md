@@ -12,7 +12,7 @@ Run them at a phase boundary — after the last task, before the PR.
 Work through the sections in order. Report findings as a numbered list with evidence
 (`file:line`, a screenshot path, a command and its output). **Do not fix anything while
 walking** — collecting first keeps the walk honest; fixing turns it into a debugging
-session that never reaches section 6.
+session that never reaches the last section.
 
 ## 0. Orient
 
@@ -123,6 +123,33 @@ comparison was backwards, passing only by accident of fixture size.
 The end-to-end and integration suites, which are too slow to run per task. By exit code.
 Report failures verbatim; do not summarise a red suite as "mostly passing".
 
+## 8. Audit the dependencies — before the PR, not because of it
+
+Run the project's dependency audit (`npm audit --audit-level=high`, `pip-audit`, `cargo
+audit`, whatever CI runs) **and run it at the same threshold CI does**. Read the exit code:
+a summary line saying "5 vulnerabilities" tells you nothing about whether the gate CI
+applies has failed.
+
+This step exists because **nothing else in this walk looks at the dependency tree**. Sections
+1–7 examine code, docs, ledger and suites — all things the phase touched. A supply-chain
+advisory arrives on a schedule that has nothing to do with your phase, so the first thing to
+notice it is CI, *after* the work is finished and the PR is open. That is the most expensive
+moment to find out and the easiest one to prevent.
+
+Two failure modes to name, because both look like the other one:
+
+- **A finding that is real but unreachable.** Most are: a dev-only or build-time dependency,
+  in a path that never runs in production and never sees untrusted input. Trace the actual
+  path (`npm ls <pkg>`) before deciding — "it's only a dev dependency" is a claim, not an
+  observation. **Then fix it anyway if CI's threshold catches it.** The reachability
+  argument justifies not panicking; it does not make CI green, and a permanently red CI
+  trains everyone to stop reading it — gate blindness applied to the one check nobody owns.
+- **A finding that is reachable.** Stop and treat it as a blocker, not a note in the report.
+
+Whatever you decide, **record it** — the project's ledger should carry a dated audit entry
+per phase, naming the findings, the reachability argument, and what was done. A finding
+accepted twice without a written reason is a finding nobody is deciding about any more.
+
 ## Report
 
 Produce:
@@ -131,7 +158,9 @@ Produce:
 2. **Findings for the inbox** — observations from the walk, appended to `docs/issues/inbox.txt`.
 3. **Ledger actions** — entries to amend, re-test, close, or promote to a task.
 4. **Drift** — plan-vs-tree divergences, with the decision made about each.
-5. **Clean** — which sections found nothing, named explicitly, so the next reader knows the
+5. **Dependency audit** — the exit code, the findings, and the decision for each with its
+   reachability traced rather than asserted.
+6. **Clean** — which sections found nothing, named explicitly, so the next reader knows the
    walk happened rather than being skipped.
 
 Then stop and let the human decide what blocks the PR.
