@@ -113,6 +113,9 @@ comparison was backwards, passing only by accident of fixture size.
   the spec drifted — every other gate is a *code* gate.
 - **Changelog:** every task in this phase is accounted for in `changelog.md` — with a
   consequence-first line, or inside the phase's `Behind the scenes` paragraph.
+- **Release note:** if the project publishes them, this release has one in its house style
+  (`${CLAUDE_PLUGIN_ROOT}/references/templates/release-notes-style.md`), and the PR description
+  will carry it word for word.
 - **`CLAUDE.md` budget:** still ≤ ~200 lines? Did the phase add only Gotchas/Key-conventions
   lines? **Prune now**: any status line that has become a description of how the product
   works belongs in the code or the spec, not here.

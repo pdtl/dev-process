@@ -141,6 +141,7 @@ phase you wait.
 | `tasks.md` | 3 | Ordered, testable implementation tasks (`T<phase>.<n>`) |
 | `decisions.md` | 4 | Ledger of compromises / assumptions / deferrals (`D<n>`) + revisit triggers |
 | `changelog.md` | 4 | Plain-language record of what shipped and why it mattered |
+| `release-notes-style.md` | 4 | How a public release note is written, if the project publishes them |
 | `glossary.md` | 4 | Domain nouns + one-line definitions (see `phase-gate`) |
 | `issues/inbox.txt` | 5 | Raw, untriaged testing notes |
 | `issues/<date>-round-N.md` | 5 | A triaged round: verdict, evidence, conflicts, plan per item |
@@ -173,6 +174,14 @@ using the product.
 - **Not in it:** rationale for a compromise (`decisions.md`), acceptance criteria
   (`tasks.md`), process lessons (`lessons-learned.md`). If an entry is getting long, the
   length belongs in one of those three.
+
+## Public release notes are a separate document
+
+If the project publishes release notes, they are not the changelog with the internals removed.
+The changelog is the complete record, written per task. A release note is written once per
+release, when its PR opens, for someone using the product, and says only what they would notice.
+Copy `references/templates/release-notes-style.md` into `docs/` and hold every note to it. The PR description carries the note word for word, because the owner's review
+is the accuracy check: a test can hold a note's shape, never whether it is true.
 
 ## Keeping `CLAUDE.md` lean
 

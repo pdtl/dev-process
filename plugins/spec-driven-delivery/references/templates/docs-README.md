@@ -13,6 +13,7 @@ instead of being copy-pasted between them.
 | `tasks.md` | **What's done and what's next?** (source of truth) |
 | `decisions.md` | Why is it like that? (`D<n>` + revisit triggers) |
 | `changelog.md` | What shipped, for someone who won't read the code? |
+| `release-notes-style.md` | How is a public release note written? *(if the project publishes them)* |
 | `glossary.md` | What do we call things? |
 | `lessons-learned.md` | What did building it teach us about how we build? |
 | `design-spec.md` | What does it look like, and why? |

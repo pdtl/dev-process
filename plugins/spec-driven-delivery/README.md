@@ -46,7 +46,8 @@ Loaded on demand by the skills, never into a session wholesale.
 - **`references/gate-blindness.md`** — **the catalogue.** Seven ways a passing check covers
   nothing, each with the defect that revealed it.
 - **`references/templates/`** — `CLAUDE.md`, `docs/README.md`, the ledgers, the issue-round
-  document, the glossary, the verification checklist, the screenshots rule.
+  document, the glossary, the verification checklist, the screenshots rule, and the release-note
+  house style for a project that publishes release notes.
 
 ## The short version
 

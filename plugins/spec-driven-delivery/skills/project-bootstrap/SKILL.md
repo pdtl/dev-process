@@ -30,6 +30,7 @@ docs/
 ├── tasks.md             # stage 3 — created by task-breakdowner
 ├── decisions.md         # ledger — starts empty, with its header
 ├── changelog.md         # starts empty, with its header
+├── release-notes-style.md  # only if the project publishes release notes
 ├── glossary.md          # domain nouns — starts empty
 ├── lessons-learned.md   # starts empty
 ├── design-spec.md       # visual decisions — see the visual-pass skill
