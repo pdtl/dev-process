@@ -68,7 +68,8 @@ If you read nothing else:
 8. Fix model errors **the day you notice them**. The price only rises, and it rises
    discontinuously at your first external user.
 9. **Audit every scheme, palette and orientation you ship** — and give any surface your gate
-   can't reach a check of its own.
+   can't reach a check of its own. Run the e2e browser in a different **time zone** from the
+   server: on one machine they always agree, and production's readers don't.
 10. **Look at anything that draws.** A test over rendering code proves the calls were made,
     never that the result is visible, distinguishable or clickable.
 11. **Prove each new test fails with its feature turned off.** When a limit changes, re-check
@@ -82,6 +83,8 @@ If you read nothing else:
 15. **Test the build you ship.** A gate against a dev server is testing a different program.
 16. **Assert that a gate's fixture isn't empty.** A scan of an empty page passes exactly like
     a scan of a clean one.
+17. **A warning about a shared setting is a question about every program that reads it.**
+    Test what each reader does with it today before calling it harmless.
 
 ## What worked, and shouldn't be over-corrected away
 

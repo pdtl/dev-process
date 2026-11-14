@@ -5,7 +5,7 @@ reused across projects instead of copy-pasted between them.
 
 ## Plugins
 
-### [`spec-driven-delivery`](plugins/spec-driven-delivery/) — v1.1.0
+### [`spec-driven-delivery`](plugins/spec-driven-delivery/) — v1.2.0
 
 Idea → shipped software as a sequence of reviewable artifacts: refine the spec, architect
 it, break it into tasks, then build under a working agreement with gates that actually

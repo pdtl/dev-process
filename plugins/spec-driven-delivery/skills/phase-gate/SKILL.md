@@ -82,6 +82,10 @@ for each one:
   noticing the same feature was rejecting real users' names.
 - **Confirm every open deferral has a placeholder task.** A ledger entry with no task will
   not come back on its own.
+- **Read any "harmless today" verdict on a warning against every reader of the setting it
+  names.** A warning speaks for the program that raised it. One about a connection string's
+  `sslmode` was filed as a future upgrade's problem while the app's *other* database client
+  had been skipping the certificate check since launch.
 
 ## 5. Audit the gates that may have gone blind
 
@@ -91,7 +95,8 @@ The fast version:
 - **Reachable?** Is every surface this phase built linked from somewhere a user would be?
   An orphaned page is exempt from every gate you have.
 - **Every variant?** If the product ships N schemes / palettes / orientations / auth states,
-  did the gate loop N times, or scan one?
+  did the gate loop N times, or scan one? And the environment's axes: do the e2e browser and
+  server run in **different time zones**, so a page rendered in the reader's zone fails?
 - **Image or call log?** Anything that draws needs pixels compared, not calls recorded.
 - **Fixture non-empty?** Does any gate added this phase assert its fixture actually has
   content? A scan of an empty page passes exactly like a scan of a clean one.

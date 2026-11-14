@@ -43,8 +43,19 @@ has checked, and it drifts silently until someone changes something nearby.
 orientation printed every label over its neighbour's and had been broken since the task
 before. Both were visible instantly to anyone who looked in that mode; nothing looked.
 
+**Some axes are the environment's, not the product's: time zone and locale.** A test
+browser and test server on one machine share a zone, the one arrangement production never
+has. *Evidence:* two admin pages formatted times in the current zone. Production's server
+was UTC and its readers weren't, so for every reader outside UTC the server's render and
+the browser's disagreed, and the framework discarded the page and drew it again on every
+visit. Every accessibility scan of both pages passed throughout, because the two renders
+always agreed on the test machine, and nothing listened for the hydration error anyway.
+
 **Check:** enumerate the axes your product varies along (scheme × palette × orientation ×
-auth state) and make the gate iterate the product, not a representative sample.
+auth state) and make the gate iterate the product, not a representative sample. Then do
+the same for the environment: run the end-to-end browser in a zone far from the server's
+(and a different locale, if the product formats for one), and fail any page that reports
+the server and client renders disagreeing.
 
 ### 3. The gate records the calls, not the result
 
@@ -141,6 +152,15 @@ invites someone to rebuild what exists), and a documented pre-PR habit that quie
 for ten phases, ending in seven high-severity advisories including an auth-bypass in the
 framework enforcing the app's auth gate.
 
+**A reason can also be wrong from the day it is written, when it judges a warning by the
+program that raised it.** *Evidence:* a database client warned at boot that a future
+version would read the connection string's `sslmode=require` more weakly. It was filed as
+a future upgrade's problem: "nothing changes today". But every request the app made went
+through a *different* client, which already read `require` as "encrypt, but don't check
+the certificate", and had since launch. The warning was accurate about its own library;
+the conclusion about the connection was wrong, because the setting had two readers and
+only one of them spoke.
+
 **Check:**
 
 - An entry blocked on an **external fact** ("can't fetch it", "no tooling exists", "the
@@ -150,6 +170,11 @@ framework enforcing the app's auth gate.
   work that is done.
 - **A documented habit is not a control.** If a pre-PR step matters, put it in CI, where a
   lapse fails the build instead of passing silently.
+- **A warning about a shared setting is a question about every program that reads it.**
+  Before filing one as "harmless today", list every reader of that connection string,
+  environment variable or config key, and *test* what each does with it now rather than
+  reading its documentation. Then, if the safe value matters, make the app refuse the
+  unsafe one at boot, so the next copy-paste from a provider's console can't undo it.
 
 ---
 
@@ -166,12 +191,14 @@ Adding more of a check you already have does not close these. Each costume needs
 |---|---|---|
 | a suite that walks the app | anything unlinked | a link-integrity / reachability test |
 | a scan of the default variant | every other variant | a loop over the variant axes |
+| a client and server on one machine | a zone or locale they don't share | a browser in a far zone |
 | a log of render calls | the rendered image | screenshots, read by a person |
 | a scan of a fixture | an empty fixture | a non-emptiness assertion |
 | a fixture sized to trip | a raised limit | headroom, and re-calibration on limit change |
 | a dev-server run | production-only behaviour | a production build under test |
 | a piped command | its own failure | the exit code |
 | a written decision | the world changing | a re-test of the underlying fact |
+| one program's warning | the other readers of the same setting | a test of each reader |
 
 **And the one that catches what none of them do:** open the thing you changed and look at
 it. Every defect in this catalogue was found that way, most of them in seconds, several of
