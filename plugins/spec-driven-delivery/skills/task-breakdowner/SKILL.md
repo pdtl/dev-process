@@ -13,6 +13,7 @@ You are a delivery lead. Turn a spec and plan into a checklist of discrete, orde
 2. If the plan has unresolved risks or open questions, list them and ask the user whether to (a) proceed and capture them as tasks, (b) defer them, or (c) resolve them in the plan first.
 3. Check CLAUDE.md or ask whether the project follows TDD. This changes how tasks are ordered. Under the hybrid TDD in `${CLAUDE_PLUGIN_ROOT}/references/working-agreement.md`, test-first applies at the risk centres (permission matrices, date and money arithmetic, concurrency, auth enumeration and timing) and tests go inline elsewhere.
 4. Read `${CLAUDE_PLUGIN_ROOT}/references/process.md` §"Stage 3" if you haven't in this session. Two rules from it bind the breakdown: **slice vertically** where you can — one narrow end-to-end path beats four complete layers with no path through them — and **"done" means reachable**, so a task that builds an API also builds its entry point, or ships with a failing checkbox.
+5. Check the ledger's event triggers against the work you're breaking down: `grep -n 'Revisit when' docs/decisions.md`. An entry whose event *is* this work fires now, not a phase after it ships. Either a task here settles it, and names its `D<n>` in Refs, or the entry is amended to say why this work leaves it open.
 
 ## Output structure
 

@@ -10,7 +10,7 @@ instead of being copy-pasted between them.
 | `specs.md` | What must it do? (`FR-X.Y`, testable) |
 | `roadmap.md` | What's in v1, and what isn't? |
 | `plan.md` | How is it built? (stack, data model, risks) |
-| `tasks.md` | **What's done and what's next?** (source of truth) |
+| `tasks.md` | **What's next?** (source of truth) |
 | `decisions.md` | Why is it like that? (`D<n>` + revisit triggers) |
 | `changelog.md` | What shipped, for someone who won't read the code? |
 | `release-notes-style.md` | How is a public release note written? *(if the project publishes them)* |
@@ -20,6 +20,7 @@ instead of being copy-pasted between them.
 | `issues/` | What did hands-on testing find? |
 | `operations/` | How do we run, verify and release it? |
 | `screenshots/` | Visual evidence, taken deliberately (never by the test suite). |
+| `archive/` | What's done? Finished phases and closed ledger entries, IDs unchanged. |
 
 ## The method
 
@@ -31,7 +32,8 @@ Installed as a plugin:
 ```
 
 Skills: `spec-refiner` · `spec-architect` · `task-breakdowner` · `task-close` ·
-`phase-gate` · `issue-round` · `visual-pass` · `project-bootstrap`.
+`phase-gate` · `issue-round` · `visual-pass` · `project-bootstrap`. Agent: `spec-reviewer`,
+started by `phase-gate`.
 
 References: the pipeline, the working agreement, and **`gate-blindness.md`** — the catalogue
 of ways a passing check covers nothing.

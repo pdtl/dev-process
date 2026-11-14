@@ -1,6 +1,6 @@
 ---
 name: phase-gate
-description: The phase-boundary ritual — the checks that only work if something schedules them. Run before opening a phase's PR and before starting the next phase. Catches drift between the plan and the built tree, duplicate domain nouns, deferrals whose trigger has fired, gates that have gone blind, and defects no suite can see. Triggers on "phase gate", "finish the phase", "ready to open the PR", "starting phase N", "phase boundary", "pre-PR check", or when a phase's last task is done.
+description: The phase-boundary ritual — the checks that only work if something schedules them. Run before opening a phase's PR and before starting the next phase. Catches drift between the plan and the built tree, duplicate domain nouns, deferrals whose trigger has fired, gates that have gone blind, and defects no suite can see, and has a read-only reviewer check the phase against its spec. Triggers on "phase gate", "finish the phase", "ready to open the PR", "starting phase N", "phase boundary", "pre-PR check", or when a phase's last task is done.
 ---
 
 # Phase gate
@@ -17,8 +17,14 @@ session that never reaches the last section.
 ## 0. Orient
 
 Read the project's `tasks.md` (which phase just closed, what it claimed), `decisions.md`
-(open entries), `plan.md` (the architecture it was supposed to build), and
+(its open triggers; see §4), `plan.md` (the architecture it was supposed to build), and
 `lessons-learned.md` if the project has one. Note the phase number and the branch.
+
+**Then start the independent review, before anything else**, so it runs while you walk. Give
+the `spec-driven-delivery:spec-reviewer` agent the phase's heading in `tasks.md` and the files
+the phase changed (`git diff --name-only <base>...HEAD`). It only reads, and it compares the
+work with the criteria it was built against, in a context that never saw it being written.
+Collect its report in §9.
 
 ## 1. Walk the app as a user — ten minutes
 
@@ -66,8 +72,21 @@ spec carried the duplication too.
 
 ## 4. Sweep the decisions ledger
 
-Read every open entry in `decisions.md` and ask which have had their trigger pulled. Then,
-for each one:
+**Sweep the triggers, not the entries.** List every open entry's trigger in one command
+(`grep -n 'Revisit when' docs/decisions.md`) and open only the entries this phase could have
+fired:
+
+- every **fact** trigger: an external condition such as a library, a network, a limit or a
+  measurement. Re-test it every time, because a fact changes without anyone deciding it
+  should;
+- every **event** trigger that names something this phase built, planned or touched.
+
+Reading every entry instead is how the sweep stops happening. On one project the open
+section grew to about two hundred entries and over four thousand lines, most of them settled
+decisions waiting on events the project hadn't reached. At that size the sweep was skimmed,
+and six entries that said in their own text they were closed were still filed under Open.
+
+Then, for each entry you opened:
 
 - **If the trigger is an external fact** — "the network can't reach it", "no tooling exists
   yet", "the library doesn't support it" — **re-test the fact. Do not re-read the entry.**
@@ -80,6 +99,9 @@ for each one:
 - **Check the framing, not just the status.** An entry filed as "this list is too short" is
   also an assertion that short is the *only* failure mode — which is what stopped anyone
   noticing the same feature was rejecting real users' names.
+- **Close what fired.** An entry whose event has happened is amended to describe the new
+  state, or closed with the date and the task that settled it. A ledger whose open entries
+  only ever grow is being read, not swept.
 - **Confirm every open deferral has a placeholder task.** A ledger entry with no task will
   not come back on its own.
 - **Read any "harmless today" verdict on a warning against every reader of the setting it
@@ -125,6 +147,12 @@ comparison was backwards, passing only by accident of fixture size.
   lines? **Prune now**: any status line that has become a description of how the product
   works belongs in the code or the spec, not here.
 - **Boxes ticked** in `tasks.md`, with files/refs/acceptance intact.
+- **Archive what's finished.** Once the PR is ready, move every phase whose boxes are all
+  ticked from `tasks.md` to the end of `docs/archive/tasks.md`, and every closed or superseded
+  ledger entry to `docs/archive/decisions.md`. First move any unticked placeholder task into a
+  `## Deferred` section at the end of `tasks.md`, so it isn't archived with its phase. IDs never
+  change, so every reference still resolves by grep. `tasks.md` then holds what's next, not
+  everything that ever was, and every skill that orients on it reads that, not the history.
 
 ## 7. Run the slow gates
 
@@ -158,6 +186,23 @@ Whatever you decide, **record it** — the project's ledger should carry a dated
 per phase, naming the findings, the reachability argument, and what was done. A finding
 accepted twice without a written reason is a finding nobody is deciding about any more.
 
+## 9. Collect the independent review
+
+Read the report from the reviewer you started in §0 and fold it into yours.
+
+- **Confirm each gap before passing it on.** Open the `file:line` it cites. You can run the
+  code; the reviewer can only read it, and a gap you haven't checked is the reviewer's guess
+  in your report.
+- **Take its "not checkable" list to the app.** Anything §1 didn't already cover gets clicked
+  now, or named in the report as not walked.
+- **Don't re-verify its clean list.** That is the point of having it.
+
+This section exists because every other one is run by the session that built the phase,
+which its own reasoning has already persuaded. The reviewer is the only check in this walk
+that never saw the work being written. It was adopted on outside evidence, not a lesson from
+a project, so record what it finds in `lessons-learned.md` for the first few phases, and
+whether anything else would have caught it.
+
 ## Report
 
 Produce:
@@ -168,7 +213,10 @@ Produce:
 4. **Drift** — plan-vs-tree divergences, with the decision made about each.
 5. **Dependency audit** — the exit code, the findings, and the decision for each with its
    reachability traced rather than asserted.
-6. **Clean** — which sections found nothing, named explicitly, so the next reader knows the
+6. **Independent review**: the reviewer's gaps, each confirmed or rejected with evidence. A
+   gap the human accepts becomes a task in this phase if it blocks, or a ledger entry with a
+   placeholder task if it is deferred.
+7. **Clean** — which sections found nothing, named explicitly, so the next reader knows the
    walk happened rather than being skipped.
 
 Then stop and let the human decide what blocks the PR.

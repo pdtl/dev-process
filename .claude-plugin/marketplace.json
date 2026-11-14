@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "dev-process",
-  "description": "Pete's development process, packaged for reuse: spec-driven delivery from idea to shipped tasks, plus the gates and rituals that thirty phases of building taught us to add.",
+  "description": "A development process, packaged for reuse: spec-driven delivery from idea to shipped tasks, plus the gates and rituals that thirty phases of building taught us to add.",
   "owner": {
     "name": "pdtl"
   },

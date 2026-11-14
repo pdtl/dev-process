@@ -15,8 +15,8 @@ in the `spec-driven-delivery` plugin, not in this repo — see `docs/README.md`.
 - `docs/specs.md` — refined functional + non-functional spec (`FR-X.Y`).
 - `docs/plan.md` — architecture, stack, data model, risks.
 - `docs/roadmap.md` — v1 / fast-follow / deferred scope.
-- `docs/tasks.md` — **ordered task list with checkboxes; the source of truth for what's done
-  vs. next.**
+- `docs/tasks.md` — **ordered task list with checkboxes; the source of truth for what's
+  next.** Finished phases are in `docs/archive/tasks.md`.
 - `docs/decisions.md` — **ledger of compromises / assumptions / deferrals and their revisit
   triggers.** Add to it whenever you make one.
 - `docs/changelog.md` — plain-language record of what shipped and why it mattered. **Every

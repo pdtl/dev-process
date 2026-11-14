@@ -12,10 +12,14 @@ it, break it into tasks, then build under a working agreement with gates that ac
 catch things.
 
 Eight skills covering bootstrap, the three spec stages, per-task and per-phase rituals, the
-issue-review loop, and visual passes. Plus `references/gate-blindness.md` — a catalogue of
-the seven ways a passing check covers nothing, each with the defect that revealed it.
+issue-review loop, and visual passes. A read-only `spec-reviewer` agent that checks each
+phase against its spec. Plus `references/gate-blindness.md` — a catalogue of the seven ways
+a passing check covers nothing, each with the defect that revealed it.
 
 See its [README](plugins/spec-driven-delivery/README.md) for the short version of the rules.
+
+Research notes (surveys of the field and ideas not yet adopted) are in [`research/`](research/).
+They aren't part of the installed plugin.
 
 ---
 

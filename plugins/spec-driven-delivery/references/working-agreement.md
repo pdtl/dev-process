@@ -74,7 +74,7 @@ The ledger's payoff is triage speed: when a review round arrives, every gap foun
 testing is already documented with its rationale and its cost, so items go from raw note to
 root cause and file-and-line in a single session, and nothing is a surprise.
 
-Three rules keep it honest:
+Four rules keep it honest:
 
 - **Every deferral gets a placeholder task in `tasks.md`, not just a ledger entry.** The
   ledger is a record, not a queue: a "revisit when…" note has no owner, no date and no place
@@ -88,6 +88,12 @@ Three rules keep it honest:
   linked it and scanned it, it failed.
 - **Re-test a reason, don't re-read it.** Entries blocked on an external fact rot; entries
   expressing a judgement age fine. See `gate-blindness.md` §8.
+- **Write the trigger so it can be swept by grep.** Its first line says whether it is a
+  **fact** (re-tested at every phase gate) or an **event** (named in the words a future task
+  would use, so planning finds it). The sweep reads trigger lines, not entries; a ledger
+  that has to be read whole stops being swept once it gets long, which on one project meant
+  closed entries sitting under Open for phases. Closed entries move to
+  `docs/archive/decisions.md`.
 
 ## Definition of done
 

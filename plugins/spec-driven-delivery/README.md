@@ -35,6 +35,12 @@ in the repo README.
 | `issue-round` | Testing notes → triaged, dispositioned round → a phase of tasks |
 | `visual-pass` | Functionality is locked and the work is now aesthetic |
 
+## Agents
+
+| Agent | When |
+|---|---|
+| `spec-reviewer` | Started by `phase-gate`: a read-only check of the phase against its criteria, in a context that never saw it written |
+
 ## References
 
 Loaded on demand by the skills, never into a session wholesale.

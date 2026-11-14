@@ -38,6 +38,7 @@ docs/
 │   └── README.md
 ├── issues/
 │   └── inbox.txt        # empty
+├── archive/             # filled at each phase gate — finished phases, closed entries
 └── operations/
     └── <checklists as the project earns them>
 ```

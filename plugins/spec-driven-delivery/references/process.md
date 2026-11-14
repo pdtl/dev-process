@@ -148,9 +148,12 @@ phase you wait.
 | `lessons-learned.md` | 5 | What the review rounds taught you about the *process* |
 | `design-spec.md` | — | The visual decisions (tokens, type scale) — see `visual-pass` |
 | `CLAUDE.md` | — | Orientation for an agent starting a session |
+| `archive/` | 4 | Finished phases of `tasks.md` and closed ledger entries, moved at each phase gate |
 
 Conventions: **numbering is stable** (`FR-X.Y` referenced by plan and tasks, so traceability
-survives edits); **one fact, one place**; **branch + commit per stage**.
+survives edits); **one fact, one place**; **branch + commit per stage**; **finished work is
+archived, not deleted**. `tasks.md` and `decisions.md` are read at every orientation, so they
+hold what is open and next. The history moves to `archive/` with its IDs unchanged.
 
 ## The changelog is written as the work lands
 
