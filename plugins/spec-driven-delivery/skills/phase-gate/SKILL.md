@@ -84,7 +84,8 @@ fired:
 Reading every entry instead is how the sweep stops happening. On one project the open
 section grew to about two hundred entries and over four thousand lines, most of them settled
 decisions waiting on events the project hadn't reached. At that size the sweep was skimmed,
-and six entries that said in their own text they were closed were still filed under Open.
+and two entries that said in their own text they had been closed were still filed under Open,
+four and five phases later.
 
 Then, for each entry you opened:
 

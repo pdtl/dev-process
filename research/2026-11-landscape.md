@@ -33,8 +33,9 @@ is ahead, and it is the half the field's own critics say is missing.
 
 A long-lived project's ledger reached about two hundred open entries and over four thousand
 lines. `phase-gate` §4 asked for every open entry to be read at every boundary; at that size
-the sweep is skimmed, and six entries that said in their own text they were closed were still
-filed under Open.
+the sweep is skimmed, and two entries that said in their own text they had been closed were still
+filed under Open, four and five phases later. (The first version of this note said six; four of
+those were closed only in part.)
 
 The first draft of this idea was wrong. It assumed most open entries were settled decisions
 with nothing to revisit, and proposed taking them out of the sweep. Checking showed every
