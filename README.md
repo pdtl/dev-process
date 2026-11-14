@@ -5,7 +5,7 @@ reused across projects instead of copy-pasted between them.
 
 ## Plugins
 
-### [`spec-driven-delivery`](plugins/spec-driven-delivery/) — v1.2.0
+### [`spec-driven-delivery`](plugins/spec-driven-delivery/)
 
 Idea → shipped software as a sequence of reviewable artifacts: refine the spec, architect
 it, break it into tasks, then build under a working agreement with gates that actually
@@ -119,14 +119,38 @@ put an inbox.
 
 ## Updating
 
-The marketplace caches its source, so an update is two steps:
+**The plugin has no version number, and every push to `main` is a release.** Claude Code takes
+the commit as the version when `plugin.json` names none, so there is nothing to bump. It used to
+carry one, and a push that forgot to bump it never reached any project: Claude Code fetches a new
+copy only when the version string changes. `claude plugin validate` warns "No version specified";
+that warning is this decision, so don't add one back.
+
+**Turn on auto-update once per machine.** Claude Code leaves it off for any marketplace that
+isn't Anthropic's, so without it an install stays on whatever it first fetched. Either select
+`dev-process` under **Marketplaces** in `/plugin` and choose **Enable auto-update**, or set it in
+`~/.claude/settings.json`:
+
+```json
+"extraKnownMarketplaces": {
+  "dev-process": {
+    "source": { "source": "github", "repo": "pdtl/dev-process" },
+    "autoUpdate": true
+  }
+}
+```
+
+Each interactive session then checks GitHub in the background a few minutes after your first
+message and downloads any new commit. The session already running keeps the copy it loaded:
+`/reload-plugins` switches it, and the next session starts on the new one.
+
+To update by hand instead, it is two steps, because the marketplace caches its source:
 
 ```sh
 claude plugin marketplace update dev-process   # refetch the catalogue
 claude plugin update spec-driven-delivery      # update the plugin
 ```
 
-Restart to apply.
+Restart, or `/reload-plugins`, to apply.
 
 ## Uninstalling
 
