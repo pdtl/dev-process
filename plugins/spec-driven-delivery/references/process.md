@@ -149,6 +149,7 @@ phase you wait.
 | `design-spec.md` | — | The visual decisions (tokens, type scale) — see `visual-pass` |
 | `CLAUDE.md` | — | Orientation for an agent starting a session |
 | `archive/` | 4 | Finished phases of `tasks.md` and closed ledger entries, moved at each phase gate |
+| `outstanding.md` | 4 | Generated, never edited: one page of what's still open, refreshed in each phase's last commit |
 
 Conventions: **numbering is stable** (`FR-X.Y` referenced by plan and tasks, so traceability
 survives edits); **one fact, one place**; **branch + commit per stage**; **finished work is

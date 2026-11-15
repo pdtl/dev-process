@@ -1,6 +1,6 @@
 ---
 name: phase-gate
-description: The phase-boundary ritual — the checks that only work if something schedules them. Run before opening a phase's PR and before starting the next phase. Catches drift between the plan and the built tree, duplicate domain nouns, deferrals whose trigger has fired, gates that have gone blind, and defects no suite can see, and has a read-only reviewer check the phase against its spec. Triggers on "phase gate", "finish the phase", "ready to open the PR", "starting phase N", "phase boundary", "pre-PR check", or when a phase's last task is done.
+description: The phase-boundary ritual — the checks that only work if something schedules them. Run before opening a phase's PR and before starting the next phase. Catches drift between the plan and the built tree, duplicate domain nouns, deferrals whose trigger has fired, gates that have gone blind, and defects no suite can see, has a read-only reviewer check the phase against its spec, and ends by refreshing docs/outstanding.md, the one-page summary of what is still open. Triggers on "phase gate", "finish the phase", "ready to open the PR", "starting phase N", "phase boundary", "pre-PR check", "what's outstanding", or when a phase's last task is done.
 ---
 
 # Phase gate
@@ -221,3 +221,22 @@ Produce:
    walk happened rather than being skipped.
 
 Then stop and let the human decide what blocks the PR.
+
+## Last, before the merge: refresh the outstanding summary
+
+In the phase's last commit before it merges, run
+
+```sh
+node ${CLAUDE_PLUGIN_ROOT}/scripts/outstanding.mjs
+```
+
+from the project root, and commit the `docs/outstanding.md` it writes. It is one page of what is
+still open: the inbox, the unticked tasks, every deferral and whether it has a task, the fact
+triggers, and the entries that say they're closed but are still filed as open. The owner reads it
+instead of asking for it, which otherwise means a session spent re-reading the ledgers.
+
+- **Generate it as the last change, not after the merge.** Everything it reads is final by then,
+  and in a project where a merge deploys, a commit after the merge is another deploy.
+- **Don't edit it by hand.** Fix the file it read, and the next phase's copy follows.
+- **It reports what the files say, not what has fired.** A trigger whose event has happened is
+  still the sweep's to find (§4); the summary only makes the list short enough to read.

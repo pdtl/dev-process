@@ -21,6 +21,7 @@ instead of being copy-pasted between them.
 | `operations/` | How do we run, verify and release it? |
 | `screenshots/` | Visual evidence, taken deliberately (never by the test suite). |
 | `archive/` | What's done? Finished phases and closed ledger entries, IDs unchanged. |
+| `outstanding.md` | What's still open? Generated at the end of each phase; never edited by hand. |
 
 ## The method
 

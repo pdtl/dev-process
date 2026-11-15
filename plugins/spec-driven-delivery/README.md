@@ -1,7 +1,7 @@
 # spec-driven-delivery
 
-Idea → shipped software, as a sequence of reviewable artifacts, with the gates that thirty
-phases of building taught us to add.
+Idea → shipped software, as a sequence of reviewable artifacts, with the gates that building a
+real product, phase by phase, taught us to add.
 
 The pipeline half (spec → plan → tasks) is a reasonable idea anyone might have. **The other
 half is not** — it is a list of specific, non-obvious ways a project with 644 green unit
@@ -12,11 +12,18 @@ account. Every rule here was paid for.
 ## Install
 
 ```
+/plugin install spec-driven-delivery --marketplace pdtl/dev-process
+```
+
+That works in one step on Claude Code 2.1.275 or later. On an older version, add the marketplace
+first:
+
+```
 /plugin marketplace add pdtl/dev-process
 /plugin install spec-driven-delivery
 ```
 
-Restart Claude Code afterwards, then `/project-bootstrap` on a new project.
+Then `/reload-plugins`, and `/project-bootstrap` on a new project.
 
 Scopes, verifying the install, removing stale loose copies of the three spec skills,
 updating, and working on the plugin itself: **[Installation](../../README.md#installation)**
@@ -40,6 +47,12 @@ in the repo README.
 | Agent | When |
 |---|---|
 | `spec-reviewer` | Started by `phase-gate`: a read-only check of the phase against its criteria, in a context that never saw it written |
+
+## Scripts
+
+| Script | When |
+|---|---|
+| `scripts/outstanding.mjs` | Run by `phase-gate` in a phase's last commit: writes `docs/outstanding.md`, one page of the open inbox items, tasks, deferrals and fact triggers. Node built-ins only; it reads three files and writes one |
 
 ## References
 

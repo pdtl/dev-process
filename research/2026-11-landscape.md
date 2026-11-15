@@ -126,11 +126,12 @@ similar tools automate it. Property-based tests suit date, money and unit arithm
 risk centres the hybrid TDD rule already names, and Kiro now generates them from
 requirements. Worth adding only at the risk centres, and only if the manual habit lapses.
 
-### Housekeeping
+### Housekeeping — *done, November 2026*
 
-- The README and marketplace text still say "thirty phases".
-- The README says to restart Claude Code after installing; `/reload-plugins` does it.
-- There is no `LICENSE`. Public without one means readable but not legally reusable.
+- The README and marketplace text said "thirty phases". They no longer give a count, which only
+  went stale.
+- The README said to restart Claude Code after installing; it now says `/reload-plugins`.
+- There was no `LICENSE`, so the public repo was readable but not legally reusable. It is MIT now.
 
 ## Considered and not adopted
 

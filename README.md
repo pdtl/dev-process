@@ -74,7 +74,8 @@ If more than one marketplace offers a plugin by that name, disambiguate with
 claude plugin install spec-driven-delivery --scope project
 ```
 
-**Restart Claude Code** after installing — plugin components are loaded at session start.
+**Run `/reload-plugins`** after installing to load its skills and agents into the session you're in.
+Restarting Claude Code does the same.
 
 ## 3. Verify
 
@@ -192,8 +193,8 @@ claude plugin validate plugins/spec-driven-delivery/skills
 
 ## Where it came from
 
-Distilled from work on a personal project — thirty phases, six
-hands-on review rounds, and fifteen lessons about the process itself. The rules live here;
+Distilled from work on a personal project: dozens of phases, a hands-on review round after most
+of them, and the lessons each round taught about the process itself. The rules live here;
 the case studies that produced them stay in that repo, where they can be checked against the
 code they describe.
 
